@@ -16,9 +16,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float groundCheckRadius = 3.5f;
     [SerializeField] private LayerMask groundLayer;
 
+    [SerializeField] private SpriteRenderer playerSprite;
+
     bool jumpRequest = false;
 
     bool isGrounded;
+
+    bool isFacingLeft = true;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -41,7 +46,26 @@ public class PlayerController : MonoBehaviour
             rb.AddForce(Vector2.up * jumpStrength * Time.deltaTime, ForceMode2D.Impulse);
             jumpRequest = false;
         }
-        
+
+        if (!isFacingLeft && input.GetMove().x < 0) // flip to the right 
+        {
+            Flip();
+        }
+        else if (isFacingLeft && input.GetMove().x > 0) // flip to the left 
+        {
+            Flip();
+        }
+    }
+
+    private void Flip()
+    {
+        playerSprite.flipX = isFacingLeft;
+        isFacingLeft = !isFacingLeft;
+    }
+
+    public bool IsFacingLeft()
+    {
+        return isFacingLeft;
     }
     private void Update()
     {
