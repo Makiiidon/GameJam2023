@@ -11,8 +11,6 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private float speed = 250f;
     [SerializeField] private float jumpStrength = 250f;
-    [SerializeField] private int jumpCounter = 2;
-    private int jumpCtr;
 
     [SerializeField] private Vector3 groundCheckOffset;
     [SerializeField] private float groundCheckRadius = 3.5f;
@@ -26,7 +24,6 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         input = InputHandler.Instance;
-        jumpCtr = jumpCounter;
     }
 
     // Update is called once per frame
@@ -44,20 +41,14 @@ public class PlayerController : MonoBehaviour
             rb.AddForce(Vector2.up * jumpStrength * Time.deltaTime, ForceMode2D.Impulse);
             jumpRequest = false;
         }
-
-        if (isGrounded)
-        {
-            jumpCtr = jumpCounter;
-        }
         
     }
     private void Update()
     {
 
-        if (input.GetJump() && jumpCtr > 1)
+        if (input.GetJump() && isGrounded)
         {
             Debug.Log("Jump");
-            jumpCtr--;
             jumpRequest = true;
         }
     }
