@@ -77,6 +77,10 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+
+    public void SetJumpRequest(bool value) { jumpRequest = value; }
+    public bool IsGrounded() { return isGrounded; }
+
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
