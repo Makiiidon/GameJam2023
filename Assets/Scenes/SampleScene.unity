@@ -438,8 +438,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Jump: 32
-  Attack: 323
-  Shoot: 325
+  Attack: 107
+  Shoot: 106
   button4: 0
 --- !u!4 &1942446975
 Transform:
