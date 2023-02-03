@@ -13,8 +13,7 @@ public class PlayerMelee : MonoBehaviour
     [SerializeField] private float attackRadius = 2.5f;
     [SerializeField] private LayerMask whatIsEnemy;
 
-    [SerializeField] private Transform attackPointDown;
-    //Face direction
+    //[SerializeField] private Transform attackPointDown;
 
     // Start is called before the first frame update
     void Start()
@@ -42,21 +41,21 @@ public class PlayerMelee : MonoBehaviour
 
         if (inputHandler.GetAttack())
         {
-            if (inputHandler.GetMove().y < 0 && !controller.IsGrounded())
-            {
-                Collider2D[] enemies = Physics2D.OverlapCircleAll(attackPointDown.position, attackRadius, whatIsEnemy);
-                Debug.Log("Atack");
-                foreach (Collider2D enemy in enemies)
-                {
-                    enemy.GetComponent<BaseEnemy>().TakeDamage(attackDamage);
-                }
+            //if (inputHandler.GetMove().y < 0 && !controller.IsGrounded())
+            //{
+            //    Collider2D[] enemies = Physics2D.OverlapCircleAll(attackPointDown.position, attackRadius, whatIsEnemy);
+            //    Debug.Log("Atack");
+            //    foreach (Collider2D enemy in enemies)
+            //    {
+            //        enemy.GetComponent<BaseEnemy>().TakeDamage(attackDamage);
+            //    }
 
-                if (enemies.Length != 0)
-                {
-                    controller.SetJumpRequest(true);
-                }
-            }
-            else
+            //    if (enemies.Length != 0)
+            //    {
+            //        controller.SetJumpRequest(true);
+            //    }
+            //}
+            //else
             {
                 Collider2D[] enemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRadius, whatIsEnemy);
                 Debug.Log("Atack");
@@ -72,6 +71,6 @@ public class PlayerMelee : MonoBehaviour
     {
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(attackPoint.position, attackRadius);
-        Gizmos.DrawWireSphere(attackPointDown.position, attackRadius);
+        //Gizmos.DrawWireSphere(attackPointDown.position, attackRadius);
     }
 }

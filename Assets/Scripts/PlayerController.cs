@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(BoxCollider2D))]
@@ -24,11 +25,14 @@ public class PlayerController : MonoBehaviour
 
     bool isFacingLeft = true;
 
+    Animator anim;
+
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         input = InputHandler.Instance;
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -69,6 +73,14 @@ public class PlayerController : MonoBehaviour
     }
     private void Update()
     {
+        if (input.GetMove().x != 0 && isGrounded)
+        {
+            anim.SetBool("IsRunning", true);
+        }
+        else if (input.GetMove().x == 0 && isGrounded)
+        {
+            anim.SetBool("IsRunning", false);
+        }
 
         if (input.GetJump() && isGrounded)
         {

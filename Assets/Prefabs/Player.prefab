@@ -164,7 +164,7 @@ GameObject:
   - component: {fileID: 4411086201595882139}
   m_Layer: 6
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -306,7 +306,6 @@ MonoBehaviour:
   whatIsEnemy:
     serializedVersion: 2
     m_Bits: 128
-  attackPointDown: {fileID: 3116060690542100706}
 --- !u!95 &4411086201595882139
 Animator:
   serializedVersion: 4
