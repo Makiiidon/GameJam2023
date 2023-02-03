@@ -430,6 +430,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 7517603991163185557, guid: 151b7e2c93b722648b41932fac3d98ec, type: 3}
   shotSpeed: 1000
+  xOffset: 0.7
+  yOffset: 0.2
+  playerController: {fileID: 1510791336}
+  maxAmmo: 10
+  currentAmmo: 0
 --- !u!114 &1510791341
 MonoBehaviour:
   m_ObjectHideFlags: 0
