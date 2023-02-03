@@ -6,6 +6,12 @@ public class PlayerMelee : MonoBehaviour
 {
     InputHandler inputHandler;
 
+    [SerializeField] private Vector3 attackPoint;
+    [SerializeField] private float attackRadius = 2.5f;
+    [SerializeField] private LayerMask whatIsEnemy;
+
+    //Face direction
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,7 +23,11 @@ public class PlayerMelee : MonoBehaviour
     {
         if (inputHandler.GetAttack())
         {
-            Debug.Log("Atack");
+            if (Physics2D.OverlapCircle(attackPoint + transform.position, attackRadius, whatIsEnemy))
+            {
+                Debug.Log("Atack");
+
+            }
         }
     }
 }
