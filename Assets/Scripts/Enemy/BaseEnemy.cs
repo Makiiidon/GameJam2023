@@ -6,7 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(BoxCollider2D))]
 public class BaseEnemy : MonoBehaviour
 {
-    Rigidbody2D rb;
+    protected Rigidbody2D rb;
 
     [SerializeField] protected int health = 10;
 
