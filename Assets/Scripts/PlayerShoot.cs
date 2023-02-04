@@ -9,6 +9,7 @@ public class PlayerShoot : MonoBehaviour
     [SerializeField] private float shotSpeed = 10.0f;
     [SerializeField] private float xOffset = 10.0f;
     [SerializeField] private float yOffset = 10.0f;
+    [SerializeField] private float bossYOffset = -1.0f;
     [SerializeField] private PlayerController playerController;
 
     [SerializeField] private int maxAmmo;
@@ -48,7 +49,18 @@ public class PlayerShoot : MonoBehaviour
        
         if(currentAmmo > 0)
         {
-            if (input.GetShoot())
+            if (playerController.isBossLevel && input.GetShoot())
+            {
+                Debug.Log("Shooting!");
+                Vector3 spawnTransform = transform.position;
+                spawnTransform.y += bossYOffset;
+                GameObject bulletShot = Instantiate(bullet, spawnTransform, Quaternion.identity);
+                Rigidbody2D bulletShotRb = bulletShot.GetComponent<Rigidbody2D>();
+                bulletShotRb.AddForce(new Vector2(0, -1 * shotSpeed));
+                Destroy(bulletShot, bulletAge);
+                currentAmmo--;
+            }
+            else if (input.GetShoot())
             {
                 Debug.Log("Shooting!");
                 Vector3 spawnTransform = transform.position;
