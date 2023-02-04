@@ -1438,30 +1438,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wasp
       objectReference: {fileID: 0}
-    - target: {fileID: 7505375738856387886, guid: 730509639500d5a479a834258f7f6c1f, type: 3}
-      propertyPath: health
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7505375738856387886, guid: 730509639500d5a479a834258f7f6c1f, type: 3}
-      propertyPath: detectionRange
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7505375738856387887, guid: 730509639500d5a479a834258f7f6c1f, type: 3}
-      propertyPath: m_Size.x
-      value: 1.3626275
-      objectReference: {fileID: 0}
-    - target: {fileID: 7505375738856387887, guid: 730509639500d5a479a834258f7f6c1f, type: 3}
-      propertyPath: m_Size.y
-      value: 0.8404441
-      objectReference: {fileID: 0}
-    - target: {fileID: 7505375738856387887, guid: 730509639500d5a479a834258f7f6c1f, type: 3}
-      propertyPath: m_Offset.x
-      value: -0.03626275
-      objectReference: {fileID: 0}
-    - target: {fileID: 7505375738856387887, guid: 730509639500d5a479a834258f7f6c1f, type: 3}
-      propertyPath: m_Offset.y
-      value: 0.06527293
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 730509639500d5a479a834258f7f6c1f, type: 3}
 --- !u!1 &1942446973
@@ -1730,10 +1706,6 @@ PrefabInstance:
     - target: {fileID: 3116060691605657666, guid: 6e207e86c59d1ab438014c3cd8b2489e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3116060691605657669, guid: 6e207e86c59d1ab438014c3cd8b2489e, type: 3}
-      propertyPath: shotSpeed
-      value: 2000
       objectReference: {fileID: 0}
     - target: {fileID: 3116060691605657679, guid: 6e207e86c59d1ab438014c3cd8b2489e, type: 3}
       propertyPath: m_Name
