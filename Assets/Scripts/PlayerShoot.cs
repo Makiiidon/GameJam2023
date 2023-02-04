@@ -78,4 +78,9 @@ public class PlayerShoot : MonoBehaviour
     {
         
     }
+
+    public int GetCurrentAmmo()
+    {
+        return currentAmmo;
+    }
 }
