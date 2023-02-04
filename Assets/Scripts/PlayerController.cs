@@ -18,7 +18,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
 
     [SerializeField] private SpriteRenderer playerSprite;
-    [SerializeField] private int playerHealth = 4;  
+    [SerializeField] private int maxHealth = 5;
+    [SerializeField] private int playerHealth = 5;
+    [SerializeField] private int addedHealth = 1;
 
     bool jumpRequest = false;
 
@@ -67,6 +69,23 @@ public class PlayerController : MonoBehaviour
         {
             TakeDamage(1);
             Debug.Log("Damage taken");
+        }
+    }
+
+    //Health Pickup
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Heal"))
+        {
+            Destroy(collision.gameObject);
+
+            playerHealth += addedHealth;
+
+            //Sets health to max if exceeds the set maximum health
+            if (playerHealth > maxHealth)
+            {
+                playerHealth = maxHealth;
+            }
         }
     }
 
