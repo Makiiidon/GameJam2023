@@ -19,13 +19,4 @@ public class AcornRotate : MonoBehaviour
     {
         transform.Rotate(0, 0, transform.rotation.z + rotate, Space.Self);
     }
-
-    public virtual void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Enemy"))
-        {
-            Destroy(this.gameObject);
-            Debug.Log("Touched");
-        }   
-    }
 }

@@ -31,6 +31,7 @@ public class BaseEnemy : MonoBehaviour
         if (collision.gameObject.CompareTag("PlayerProjectile"))
         {
             TakeDamage(2);
+            Destroy(collision.gameObject);
         }
     }
 }
