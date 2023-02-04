@@ -36,13 +36,17 @@ public class RootWallBehavior : MonoBehaviour
             }
         }
 
-        if(defeatedEnemies >= maxEnemies)
+        if(defeatedEnemies == maxEnemies)
         {
+            defeatedEnemies = 0;
             return true;
         }
         else
         {
+            defeatedEnemies = 0;
             return false;
         }
+
+       
     }
 }

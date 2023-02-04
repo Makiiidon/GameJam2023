@@ -9,10 +9,16 @@ public class LevelProgressionHandler : MonoBehaviour
     [SerializeField] CinemachineVirtualCamera vcam;
     float dollyPosition = 0f;
     int ctr = 0;
+    int levelCount;
+    [SerializeField] List<GameObject> levels;
+
+    // Level Prefabs
+    [SerializeField] private GameObject level2;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        levelCount = -1; // To start at 0
     }
 
     // Update is called once per frame
@@ -22,13 +28,16 @@ public class LevelProgressionHandler : MonoBehaviour
         {
             if (progressionPoints[i].CheckPlayerInArea())
             {
+                // Trigger
                 dollyPosition += 1;
                 ctr++;
                 var dolly = vcam.GetCinemachineComponent<CinemachineTrackedDolly>();
                 dolly.m_PathPosition = dollyPosition;
+                // Spawn Next Level
+                levelCount++;
+                levels[levelCount].SetActive(true);
             }
         }
+
     }
-
-
 }
