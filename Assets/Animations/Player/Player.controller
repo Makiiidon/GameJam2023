@@ -251,6 +251,7 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
+<<<<<<< HEAD
 <<<<<<< Updated upstream
     m_Controller: {fileID: 9100000}
 =======
@@ -268,6 +269,9 @@ AnimatorController:
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
 >>>>>>> Stashed changes
+=======
+    m_Controller: {fileID: 0}
+>>>>>>> parent of 6b69a9e (Added Spider Enemy)
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
