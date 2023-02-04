@@ -5,9 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    [SerializeField] const string GameScene = "SampleScene";
+    const string GameScene = "SampleScene";
     public void Play()
     {
         SceneManager.LoadScene(GameScene);
+    }
+
+    public void Exit()
+    {
+        Application.Quit();
     }
 }
