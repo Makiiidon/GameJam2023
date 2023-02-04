@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
 
     [SerializeField] private SpriteRenderer playerSprite;
-    [SerializeField] private int playerHealth;  
+    [SerializeField] private int playerHealth = 4;  
 
     bool jumpRequest = false;
 

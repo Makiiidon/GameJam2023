@@ -130,7 +130,7 @@ GameObject:
   - component: {fileID: 2806122324135257326}
   m_Layer: 7
   m_Name: Wasp
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -216,11 +216,6 @@ MonoBehaviour:
   health: 2
   alive: 1
   speed: 250
-  headPosition: {fileID: 7505375738548186596}
-  detectionRange: 0.56
-  whatIsEdge:
-    serializedVersion: 2
-    m_Bits: 72
   sprite: {fileID: 7505375738491332457}
 --- !u!95 &2806122324135257326
 Animator:
