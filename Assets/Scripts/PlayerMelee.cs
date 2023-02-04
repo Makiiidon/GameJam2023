@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations;
 
 public class PlayerMelee : MonoBehaviour
 {
@@ -15,11 +16,14 @@ public class PlayerMelee : MonoBehaviour
 
     [SerializeField] private Transform attackPointDown;
 
+    Animator anim;
+
     // Start is called before the first frame update
     void Start()
     {
         inputHandler = InputHandler.Instance;
         controller = GetComponent<PlayerController>();
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -50,6 +54,7 @@ public class PlayerMelee : MonoBehaviour
                     enemy.GetComponent<BaseEnemy>().TakeDamage(attackDamage);
                 }
 
+
                 if (enemies.Length != 0)
                 {
                     controller.SetJumpRequest(true);
@@ -64,7 +69,8 @@ public class PlayerMelee : MonoBehaviour
                     enemy.GetComponent<BaseEnemy>().TakeDamage(attackDamage);
                 }
             }
-                
+
+            anim.SetTrigger("Attack");
 
         }
     }

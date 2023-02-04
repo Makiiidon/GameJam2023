@@ -21,5 +21,6 @@ public class UIHandler : MonoBehaviour
     void Update()
     {
         ammoVal.SetText(shoot.GetCurrentAmmo().ToString());
+        healthVal.SetText(controller.GetHealth().ToString());
     }
 }
