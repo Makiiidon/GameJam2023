@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private int playerHealth = 5;
     [SerializeField] private int addedHealth = 1;
 
-    [SerializeField] bool isBossLevel = false;
+    public bool isBossLevel = false;
 
     bool jumpRequest = false;
 

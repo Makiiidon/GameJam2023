@@ -9,6 +9,13 @@ public class BossBehavior : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] private int maxHp;
     [SerializeField] private int currentHp;
+    [SerializeField] private GameObject projectileSpawn;
+
+
+    // Slow Fireball
+    [SerializeField] private GameObject slowFireball;
+    [SerializeField] private float slowFireballSpeed;
+    [SerializeField] private float slowFireballAge;
 
     // Start is called before the first frame update
     void Start()
@@ -20,6 +27,9 @@ public class BossBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        ShootSlow();
+
+
         if (transform.position != targetDestination.transform.position)
         {
             Debug.Log("Moving");
@@ -33,4 +43,13 @@ public class BossBehavior : MonoBehaviour
             targetDestination = bossNodes[randNode];
         }
     }
+
+    private void ShootSlow()
+    {
+        GameObject bulletShot = Instantiate(slowFireball, projectileSpawn.transform.position, Quaternion.identity);
+        Rigidbody2D bulletShotRb = bulletShot.GetComponent<Rigidbody2D>();
+        bulletShotRb.AddForce(new Vector2(0, slowFireballSpeed));
+        Destroy(bulletShot, slowFireballAge);
+    }
+
 }
