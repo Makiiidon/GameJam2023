@@ -25,6 +25,8 @@ public class SpiderBehavior : BaseEnemy
         ticks = 0;
     }
 
+
+
     // Update is called once per frame
     void Update()
     {

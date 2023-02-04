@@ -32,19 +32,13 @@ public class PlayerShoot : MonoBehaviour
             Destroy(collision.gameObject);
 
             currentAmmo += addedAmmo;
+            Debug.Log("Picked up 5 ammo");
 
             if (currentAmmo > maxAmmo)
             {
                 currentAmmo = maxAmmo;
+                Debug.Log("Already at max ammo");
             }
-        }
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("WallFloorHit"))
-        {
-            Destroy(bullet);    
         }
     }
 

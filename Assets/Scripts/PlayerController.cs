@@ -88,19 +88,31 @@ public class PlayerController : MonoBehaviour
     //Health Pickup
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        //Health pickup
         if (collision.gameObject.CompareTag("Heal"))
         {
             Destroy(collision.gameObject);
 
             playerHealth += addedHealth;
+            Debug.Log("Got Healed");
 
             //Sets health to max if exceeds the set maximum health
             if (playerHealth > maxHealth)
             {
                 playerHealth = maxHealth;
+                Debug.Log("Already at Max Health");
             }
         }
+
+        //Enemy projectile hit register
+        if (collision.gameObject.CompareTag("EnemyProjectile"))
+        {
+            TakeDamage(1);
+            Debug.Log("Got shot");
+            Destroy(collision.gameObject);
+        }
     }
+
 
     private void Update()
     {
