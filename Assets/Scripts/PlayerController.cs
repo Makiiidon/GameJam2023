@@ -32,6 +32,9 @@ public class PlayerController : MonoBehaviour
 
     Animator anim;
 
+    [SerializeField] ParticleSystem leaves1;
+    [SerializeField] ParticleSystem leaves2;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -131,13 +134,15 @@ public class PlayerController : MonoBehaviour
         {
             anim.SetBool("IsRunning", true);
             anim.SetBool("IsFalling", false);
+            leaves1.Play();
+            leaves2.Play();
 
         }
         else if (input.GetMove().x == 0 && isGrounded)
         {
             anim.SetBool("IsRunning", false);
             anim.SetBool("IsFalling", false);
-
+            
         }
 
         if (input.GetJump() && isGrounded)
