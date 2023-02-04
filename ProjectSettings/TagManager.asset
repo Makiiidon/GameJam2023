@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Reload
   - PlayerProjectile
+  - Enemy
   layers:
   - Default
   - TransparentFX

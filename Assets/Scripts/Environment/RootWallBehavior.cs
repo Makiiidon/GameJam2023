@@ -18,8 +18,6 @@ public class RootWallBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("Check Dead: " + CheckDead());
-
         if(CheckDead())
         {
             this.gameObject.SetActive(false);

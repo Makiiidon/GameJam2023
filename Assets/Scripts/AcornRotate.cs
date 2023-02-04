@@ -17,6 +17,15 @@ public class AcornRotate : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Rotate(0, 0, transform.rotation.z + 5, Space.Self);
+        transform.Rotate(0, 0, transform.rotation.z + rotate, Space.Self);
+    }
+
+    public virtual void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Enemy"))
+        {
+            Destroy(this.gameObject);
+            Debug.Log("Touched");
+        }   
     }
 }

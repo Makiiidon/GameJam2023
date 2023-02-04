@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
 
     [SerializeField] private SpriteRenderer playerSprite;
+    [SerializeField] private int playerHealth;  
 
     bool jumpRequest = false;
 
@@ -53,7 +54,22 @@ public class PlayerController : MonoBehaviour
         
     }
 
-    
+    //Player damage taking
+    public virtual void TakeDamage(int damageAmount)
+    {
+        playerHealth -= damageAmount;
+    }
+
+    //Damage taking
+    public virtual void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            TakeDamage(1);
+            Debug.Log("Damage taken");
+        }
+    }
+
     private void Update()
     {
         isGrounded = Physics2D.OverlapCircle(groundCheckOffset + transform.position, groundCheckRadius, groundLayer);
