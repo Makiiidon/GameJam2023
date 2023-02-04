@@ -61,7 +61,10 @@ public class WaspBehavior : BaseEnemy
 
     private void Flip()
     {
-        sprite.flipX = isFacingLeft;
+        //sprite.flipX = isFacingLeft;
+        Vector3 currentScale = gameObject.transform.localScale;
+        currentScale.x *= -1;
+        gameObject.transform.localScale = currentScale;
         isFacingLeft = !isFacingLeft;
     }
 

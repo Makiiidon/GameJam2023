@@ -233,7 +233,6 @@ MonoBehaviour:
   vcam: {fileID: 153340250}
   levels:
   - {fileID: 2017494235}
-  level2: {fileID: 0}
 --- !u!4 &51230758
 Transform:
   m_ObjectHideFlags: 0
@@ -4041,6 +4040,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1366411053}
     m_Modifications:
+    - target: {fileID: 7505375738491332457, guid: 730509639500d5a479a834258f7f6c1f, type: 3}
+      propertyPath: m_FlipX
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7505375738856387873, guid: 730509639500d5a479a834258f7f6c1f, type: 3}
       propertyPath: m_RootOrder
       value: 5

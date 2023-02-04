@@ -12,9 +12,6 @@ public class LevelProgressionHandler : MonoBehaviour
     int levelCount;
     [SerializeField] List<GameObject> levels;
 
-    // Level Prefabs
-    [SerializeField] private GameObject level2;
-
     // Start is called before the first frame update
     void Start()
     {
