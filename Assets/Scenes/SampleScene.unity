@@ -1271,6 +1271,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3127191557570497030, guid: c555aeef7f788c44eb3723372a6e8509, type: 3}
+      propertyPath: bulletAge
+      value: 0.75
+      objectReference: {fileID: 0}
     - target: {fileID: 3127191557570497033, guid: c555aeef7f788c44eb3723372a6e8509, type: 3}
       propertyPath: m_Name
       value: Spider

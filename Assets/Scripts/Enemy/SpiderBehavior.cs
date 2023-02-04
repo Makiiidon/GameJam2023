@@ -14,6 +14,7 @@ public class SpiderBehavior : BaseEnemy
     [SerializeField] private float shotInterval;
     [SerializeField] private float shotIntervalMin;
     [SerializeField] private float shotIntervalMax;
+    [SerializeField] private float bulletAge = 0.5f;
     private float ticks;
 
     // Start is called before the first frame update
@@ -52,6 +53,7 @@ public class SpiderBehavior : BaseEnemy
         GameObject bulletShot = Instantiate(bullet, this.transform.position, Quaternion.identity);
         Rigidbody2D bulletShotRb = bulletShot.GetComponent<Rigidbody2D>();
         bulletShotRb.AddForce(directionVector * shotSpeed);
+        Destroy(bulletShot, bulletAge);
     }
     public override void TakeDamage(int damageAmount)
     {
