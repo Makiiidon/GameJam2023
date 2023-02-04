@@ -6,6 +6,13 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
     const string GameScene = "SampleScene";
+    [SerializeField] AudioClip music;
+
+    private void Start()
+    {
+        AudioHandler.Instance.PlayMusic(music); 
+    }
+
     public void Play()
     {
         SceneManager.LoadScene(GameScene);
