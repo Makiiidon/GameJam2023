@@ -15,8 +15,6 @@ public class WaspBehavior : BaseEnemy
 
     bool bumped = false;
 
-    float direction = 1;
-
 
     // Update is called once per frame
     void Update()
@@ -30,7 +28,13 @@ public class WaspBehavior : BaseEnemy
             Flip();
         }
 
+    }
+
+   
+    void FixedUpdate()
+    {
         bumped = Physics2D.OverlapCircle(headPosition.position, detectionRange, whatIsEdge);
+        float direction = 1;
 
         if (isFacingLeft)
         {
@@ -48,11 +52,7 @@ public class WaspBehavior : BaseEnemy
                 direction = -1;
             }
         }
-    }
 
-   
-    void FixedUpdate()
-    {
         rb.velocity = new Vector3(direction * speed * Time.deltaTime, 0, 0);
     }
 

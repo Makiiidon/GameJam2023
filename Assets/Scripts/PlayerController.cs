@@ -78,21 +78,29 @@ public class PlayerController : MonoBehaviour
         if (input.GetMove().x != 0 && isGrounded)
         {
             anim.SetBool("IsRunning", true);
+            anim.SetBool("IsFalling", false);
         }
         else if (input.GetMove().x == 0 && isGrounded)
         {
             anim.SetBool("IsRunning", false);
+            anim.SetBool("IsFalling", false);
         }
 
         if (input.GetJump() && isGrounded)
         {
-            Debug.Log("Jump");
-            jumpRequest = true;
+            anim.SetTrigger("Jump");
+            //jumpRequest = true;
+        }
+
+        if (rb.velocity.y < 0)
+        {
+            anim.SetBool("IsFalling", true);
         }
     }
 
 
     public void SetJumpRequest(bool value) { jumpRequest = value; }
+    public void Jump() { jumpRequest = true; }
     public bool IsGrounded() { return isGrounded; }
 
     private void OnDrawGizmos()
