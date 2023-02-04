@@ -53,4 +53,14 @@ public class SpiderBehavior : BaseEnemy
         Rigidbody2D bulletShotRb = bulletShot.GetComponent<Rigidbody2D>();
         bulletShotRb.AddForce(directionVector * shotSpeed);
     }
+    public override void TakeDamage(int damageAmount)
+    {
+        base.TakeDamage(damageAmount);
+
+        if (health <= 0)
+        {
+            SpawnDeathParticles();
+            this.gameObject.SetActive(false);
+        }
+    }
 }

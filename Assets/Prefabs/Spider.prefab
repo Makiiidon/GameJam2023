@@ -118,7 +118,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.005806297, y: 0.004345894}
@@ -146,7 +146,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6be5584855a04dd4a907ba3154e411f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rb: {fileID: 3127191557570497028}
+  particle: {fileID: 9190036401976882654, guid: 3c96c1092cb67354a9c0a3898604545d, type: 3}
   health: 10
+  alive: 1
   bullet: {fileID: 7517603991163185557, guid: bc3b55dae4e25464c8c29f4ac20e8ec3, type: 3}
   shotSpeed: 1000
   shotInterval: 0

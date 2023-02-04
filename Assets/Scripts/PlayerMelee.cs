@@ -56,14 +56,14 @@ public class PlayerMelee : MonoBehaviour
             //    }
             //}
             //else
+
+            Collider2D[] enemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRadius, whatIsEnemy);
+            Debug.Log("Atack");
+            foreach (Collider2D enemy in enemies)
             {
-                Collider2D[] enemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRadius, whatIsEnemy);
-                Debug.Log("Atack");
-                foreach (Collider2D enemy in enemies)
-                {
-                    enemy.GetComponent<BaseEnemy>().TakeDamage(attackDamage);
-                }
+                enemy.GetComponent<BaseEnemy>().TakeDamage(attackDamage);
             }
+
         }
     }
 

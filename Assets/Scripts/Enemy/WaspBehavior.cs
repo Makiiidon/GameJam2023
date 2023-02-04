@@ -7,15 +7,10 @@ public class WaspBehavior : BaseEnemy
 {
     [SerializeField] float speed = 250.0f;
 
-    [SerializeField] Transform headPosition;
-    [SerializeField] float detectionRange = 0.01f;
-    [SerializeField] LayerMask whatIsEdge;
-
     bool isFacingLeft = true;
     
     [SerializeField] SpriteRenderer sprite;
 
-    bool bumped = false;
 
     Animator anim;
 
@@ -48,25 +43,18 @@ public class WaspBehavior : BaseEnemy
 
     void FixedUpdate()
     {
-        bumped = Physics2D.OverlapCircle(headPosition.position, detectionRange, whatIsEdge);
         float direction = 1;
 
         if (isFacingLeft)
         {
             direction = -1;
-            if (bumped)
-            {
-                direction = 1;
-            }
         }
         else if (!isFacingLeft)
         {
             direction = 1;
-            if (bumped)
-            {
-                direction = -1;
-            }
+
         }
+
 
         rb.velocity = new Vector3(direction * speed * Time.deltaTime, 0, 0);
     }
@@ -86,5 +74,13 @@ public class WaspBehavior : BaseEnemy
             SpawnDeathParticles();
             alive = false;
         }
+    }
+
+
+    public override void OnCollisionEnter2D(Collision2D collision)
+    {
+        Flip();
+
+        base.OnCollisionEnter2D(collision);
     }
 }
