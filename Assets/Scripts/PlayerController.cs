@@ -61,6 +61,8 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    
+
     private void Flip()
     {
         playerSprite.flipX = isFacingLeft;

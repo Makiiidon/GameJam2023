@@ -12,12 +12,23 @@ public class PlayerShoot : MonoBehaviour
     [SerializeField] private PlayerController playerController;
     [SerializeField] private int maxAmmo;
     [SerializeField] private int currentAmmo;
+    [SerializeField] private int addedAmmo = 5;
 
     // Start is called before the first frame update
     void Start()
     {
         input = InputHandler.Instance;
         currentAmmo = maxAmmo;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Reload"))
+        {
+            Destroy(collision.gameObject);
+
+            currentAmmo += addedAmmo;
+        }
     }
 
     // Update is called once per frame
