@@ -10,9 +10,11 @@ public class PlayerShoot : MonoBehaviour
     [SerializeField] private float xOffset = 10.0f;
     [SerializeField] private float yOffset = 10.0f;
     [SerializeField] private PlayerController playerController;
+
     [SerializeField] private int maxAmmo;
     [SerializeField] private int currentAmmo;
     [SerializeField] private int addedAmmo = 5;
+    [SerializeField] private float bulletAge = 0.5f;
 
     // Start is called before the first frame update
     void Start()
@@ -53,6 +55,8 @@ public class PlayerShoot : MonoBehaviour
                     GameObject bulletShot = Instantiate(bullet, spawnTransform, Quaternion.identity);
                     Rigidbody2D bulletShotRb = bulletShot.GetComponent<Rigidbody2D>();
                     bulletShotRb.AddForce(new Vector2(-1 * shotSpeed, 0));
+                    Destroy(bulletShot, bulletAge);
+
                 }
                 else
                 {
@@ -60,6 +64,7 @@ public class PlayerShoot : MonoBehaviour
                     GameObject bulletShot = Instantiate(bullet, spawnTransform, Quaternion.identity);
                     Rigidbody2D bulletShotRb = bulletShot.GetComponent<Rigidbody2D>();
                     bulletShotRb.AddForce(new Vector2(shotSpeed, 0));
+                    Destroy(bulletShot, bulletAge);
                 }
 
                 currentAmmo--;
