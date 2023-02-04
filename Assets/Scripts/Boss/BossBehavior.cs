@@ -48,7 +48,7 @@ public class BossBehavior : MonoBehaviour
         {
             ShootSlow();
             SFB_ticks = 0;
-            SLOWFIREBALL_INTERVAL = Random.Range(250, 400);
+            SLOWFIREBALL_INTERVAL = Random.Range(150, 250);
         }
         else if (SFB_ticks >= SLOWFIREBALL_INTERVAL && SBF_Prepping)
         {
@@ -60,7 +60,7 @@ public class BossBehavior : MonoBehaviour
         if (transform.position.x != targetDestination.transform.position.x)
         {
             Debug.Log("Moving");
-            transform.position = Vector2.MoveTowards(transform.position, targetDestination.transform.position, speed * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, targetDestination.transform.position, speed * Time.deltaTime);
         }
         else if (transform.position.x == targetDestination.transform.position.x)
         {

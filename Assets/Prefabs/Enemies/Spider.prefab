@@ -153,6 +153,6 @@ MonoBehaviour:
   bullet: {fileID: 7517603991163185557, guid: bc3b55dae4e25464c8c29f4ac20e8ec3, type: 3}
   shotSpeed: 1000
   shotInterval: 0
-  shotIntervalMin: 100
-  shotIntervalMax: 400
+  shotIntervalMin: 300
+  shotIntervalMax: 600
   bulletAge: 0.5
