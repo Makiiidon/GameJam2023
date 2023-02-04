@@ -79,13 +79,15 @@ public class PlayerController : MonoBehaviour
         {
             anim.SetBool("IsRunning", true);
             anim.SetBool("IsFalling", false);
+
         }
         else if (input.GetMove().x == 0 && isGrounded)
         {
             anim.SetBool("IsRunning", false);
             anim.SetBool("IsFalling", false);
+
         }
-            
+
         if (input.GetJump() && isGrounded)
         {
             anim.SetTrigger("Jump");
