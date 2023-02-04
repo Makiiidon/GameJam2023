@@ -16,6 +16,7 @@ public class PlayerShoot : MonoBehaviour
     [SerializeField] private int addedAmmo = 5;
     [SerializeField] private float bulletAge = 0.5f;
 
+
     // Start is called before the first frame update
     void Start()
     {
