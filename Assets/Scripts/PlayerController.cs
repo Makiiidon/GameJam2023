@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Animations;
 
 [RequireComponent(typeof(Rigidbody2D))]
-[RequireComponent(typeof(BoxCollider2D))]
+[RequireComponent(typeof(CircleCollider2D))]
 public class PlayerController : MonoBehaviour
 {
     Rigidbody2D rb;
@@ -42,7 +42,6 @@ public class PlayerController : MonoBehaviour
             input.GetMove().x * speed * Time.deltaTime, 
             rb.velocity.y);
 
-        isGrounded = Physics2D.OverlapCircle(groundCheckOffset + transform.position, groundCheckRadius, groundLayer);
 
         if (jumpRequest)
         {
@@ -50,6 +49,14 @@ public class PlayerController : MonoBehaviour
             rb.AddForce(Vector2.up * jumpStrength * Time.deltaTime, ForceMode2D.Impulse);
             jumpRequest = false;
         }
+
+        
+    }
+
+    
+    private void Update()
+    {
+        isGrounded = Physics2D.OverlapCircle(groundCheckOffset + transform.position, groundCheckRadius, groundLayer);
 
         if (!isFacingLeft && input.GetMove().x < 0) // flip to the right 
         {
@@ -59,22 +66,7 @@ public class PlayerController : MonoBehaviour
         {
             Flip();
         }
-    }
 
-    
-
-    private void Flip()
-    {
-        playerSprite.flipX = isFacingLeft;
-        isFacingLeft = !isFacingLeft;
-    }
-
-    public bool IsFacingLeft()
-    {
-        return isFacingLeft;
-    }
-    private void Update()
-    {
         if (input.GetMove().x != 0 && isGrounded)
         {
             anim.SetBool("IsRunning", true);
@@ -91,15 +83,26 @@ public class PlayerController : MonoBehaviour
         if (input.GetJump() && isGrounded)
         {
             anim.SetTrigger("Jump");
-            //jumpRequest = true;
+            jumpRequest = true;
         }
 
-        if (rb.velocity.y < 0)
+        if (rb.velocity.y < 0 && !isGrounded)
         {
             anim.SetBool("IsFalling", true);
         }
     }
 
+
+    private void Flip()
+    {
+        playerSprite.flipX = isFacingLeft;
+        isFacingLeft = !isFacingLeft;
+    }
+
+    public bool IsFacingLeft()
+    {
+        return isFacingLeft;
+    }
 
     public void SetJumpRequest(bool value) { jumpRequest = value; }
     public void Jump() { jumpRequest = true; }

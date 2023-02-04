@@ -155,13 +155,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3116060691605657666}
-  - component: {fileID: 3116060691605657667}
   - component: {fileID: 3116060691605657664}
   - component: {fileID: 3116060691605657665}
   - component: {fileID: 3116060691605657678}
   - component: {fileID: 3116060691605657669}
   - component: {fileID: 3116060691605657668}
   - component: {fileID: 4411086201595882139}
+  - component: {fileID: 7031377644061273353}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -187,32 +187,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &3116060691605657667
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3116060691605657679}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
 --- !u!50 &3116060691605657664
 Rigidbody2D:
   serializedVersion: 4
@@ -289,6 +263,7 @@ MonoBehaviour:
   maxAmmo: 10
   currentAmmo: 0
   addedAmmo: 5
+  bulletAge: 0.5
 --- !u!114 &3116060691605657668
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -307,6 +282,7 @@ MonoBehaviour:
   whatIsEnemy:
     serializedVersion: 2
     m_Bits: 128
+  attackPointDown: {fileID: 3116060690542100706}
 --- !u!95 &4411086201595882139
 Animator:
   serializedVersion: 4
@@ -327,3 +303,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!58 &7031377644061273353
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3116060691605657679}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.086209536}
+  serializedVersion: 2
+  m_Radius: 0.5646572
