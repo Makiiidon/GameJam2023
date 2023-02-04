@@ -124,6 +124,7 @@ public class PlayerController : MonoBehaviour
     public void Jump() { jumpRequest = true; }
     public bool IsGrounded() { return isGrounded; }
 
+    public int GetHealth() { return playerHealth; }
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
