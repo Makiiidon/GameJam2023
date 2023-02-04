@@ -40,6 +40,14 @@ public class PlayerShoot : MonoBehaviour
         }
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("WallFloorHit"))
+        {
+            Destroy(bullet);    
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -58,7 +66,6 @@ public class PlayerShoot : MonoBehaviour
                     Rigidbody2D bulletShotRb = bulletShot.GetComponent<Rigidbody2D>();
                     bulletShotRb.AddForce(new Vector2(-1 * shotSpeed, 0));
                     Destroy(bulletShot, bulletAge);
-
                 }
                 else
                 {
@@ -68,8 +75,8 @@ public class PlayerShoot : MonoBehaviour
                     bulletShotRb.AddForce(new Vector2(shotSpeed, 0));
                     Destroy(bulletShot, bulletAge);
                 }
-
                 currentAmmo--;
+
             }
         }
     }

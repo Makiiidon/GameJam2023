@@ -7,6 +7,8 @@ TagManager:
   - Reload
   - PlayerProjectile
   - Enemy
+  - Heal
+  - WallFloorHit
   layers:
   - Default
   - TransparentFX
