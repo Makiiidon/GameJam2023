@@ -28,6 +28,11 @@ public class PlayerShoot : MonoBehaviour
             Destroy(collision.gameObject);
 
             currentAmmo += addedAmmo;
+
+            if (currentAmmo > maxAmmo)
+            {
+                currentAmmo = maxAmmo;
+            }
         }
     }
 
