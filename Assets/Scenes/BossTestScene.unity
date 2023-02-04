@@ -5056,6 +5056,11 @@ MonoBehaviour:
   slowFireballSpeed: 300
   slowFireballAge: 2
   SBF_ShotDelay: 0
+  RAZORLEAF_INTERVAL: 1000
+  razorLeaf: {fileID: 7734771758417086995, guid: 7a8bdecf16511db4a9bfdb5fb3dd5cc6, type: 3}
+  razorLeafAge: 0.3
+  RL_ShotDelay: 0
+  currentPhase: 0
 --- !u!1 &1080596426708174316
 GameObject:
   m_ObjectHideFlags: 0
@@ -6043,6 +6048,10 @@ PrefabInstance:
     - target: {fileID: 8234076707461950051, guid: fe726778b6ca7c24585f26594c36c7da, type: 3}
       propertyPath: speed
       value: 350
+      objectReference: {fileID: 0}
+    - target: {fileID: 8234076707461950051, guid: fe726778b6ca7c24585f26594c36c7da, type: 3}
+      propertyPath: maxHealth
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8234076707461950051, guid: fe726778b6ca7c24585f26594c36c7da, type: 3}
       propertyPath: deathParticles

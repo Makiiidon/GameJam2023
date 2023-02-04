@@ -20,8 +20,17 @@ public class BossBehavior : MonoBehaviour
     [SerializeField] private float slowFireballAge;
     [SerializeField] private float SBF_ShotDelay;
     private bool SBF_Prepping;
-   
 
+    // Razor Leaf
+    private float RL_ticks;
+    [SerializeField] private float RAZORLEAF_INTERVAL;
+    [SerializeField] private GameObject razorLeaf;
+    [SerializeField] private float razorLeafAge;
+    [SerializeField] private float RL_ShotDelay;
+    private bool RL_Prepping;
+
+    // Phase Variables
+    [SerializeField] private int currentPhase;
 
     // Start is called before the first frame update
     void Start()
@@ -31,31 +40,17 @@ public class BossBehavior : MonoBehaviour
         SFB_ticks = 0;
         SBF_Prepping = false;
         currentHp = maxHp;
+        currentPhase = 1;
     }
 
     // Update is called once per frame
     void Update()
     {
-
+       
         if(CheckDead())
         {
             this.gameObject.SetActive(false);
         }
-
-        // Slow Fireball
-        SFB_ticks++;
-        if(SFB_ticks >= SLOWFIREBALL_INTERVAL && !SBF_Prepping)
-        {
-            ShootSlow();
-            SFB_ticks = 0;
-            SLOWFIREBALL_INTERVAL = Random.Range(150, 250);
-        }
-        else if (SFB_ticks >= SLOWFIREBALL_INTERVAL && SBF_Prepping)
-        {
-            SFB_ticks = 0;
-        }
-            
-
 
         if (transform.position.x != targetDestination.transform.position.x)
         {
@@ -68,6 +63,64 @@ public class BossBehavior : MonoBehaviour
             int randNode = Random.Range(0, bossNodes.Count);
             Debug.Log("New Node " + randNode);
             targetDestination = bossNodes[randNode];
+        }
+
+        if (currentPhase == 1) // Slow Fireball
+        {
+            SFB_ticks++;
+            if (SFB_ticks >= SLOWFIREBALL_INTERVAL && !SBF_Prepping)
+            {
+                ShootSlow();
+                SFB_ticks = 0;
+                SLOWFIREBALL_INTERVAL = Random.Range(250, 350);
+            }
+            else if (SFB_ticks >= SLOWFIREBALL_INTERVAL && SBF_Prepping)
+            {
+                SFB_ticks = 0;
+            }
+
+            if(currentHp == maxHp - 10)
+            {
+                currentPhase = 2;
+            }
+        }
+        else if(currentPhase == 2) // Leaves
+        {
+            RL_ticks++;
+            if (RL_ticks >= RAZORLEAF_INTERVAL)
+            {
+                SpawnLeaf();
+                RL_ticks = 0;
+                RAZORLEAF_INTERVAL = Random.Range(200, 400);
+            }
+
+            if (currentHp == maxHp - 20)
+            {
+                currentPhase = 3;
+                RL_ticks = 0;
+            }
+        }
+        else if(currentPhase == 3) // Both
+        {
+            SFB_ticks++;
+            if (SFB_ticks >= SLOWFIREBALL_INTERVAL && !SBF_Prepping)
+            {
+                ShootSlow();
+                SFB_ticks = 0;
+                SLOWFIREBALL_INTERVAL = Random.Range(250, 350);
+            }
+            else if (SFB_ticks >= SLOWFIREBALL_INTERVAL && SBF_Prepping)
+            {
+                SFB_ticks = 0;
+            }
+
+            RL_ticks++;
+            if (RL_ticks >= RAZORLEAF_INTERVAL)
+            {
+                SpawnLeaf();
+                RL_ticks = 0;
+                RAZORLEAF_INTERVAL = Random.Range(200, 400);
+            }
         }
     }
 
@@ -88,6 +141,11 @@ public class BossBehavior : MonoBehaviour
         GameObject bulletShot = Instantiate(slowFireball, projectileSpawn.transform.position, Quaternion.identity);
         SBF_Prepping = true;
         StartCoroutine(FireSlow(bulletShot));
+    }
+
+    private void SpawnLeaf()
+    {
+        GameObject leafSpawned = Instantiate(razorLeaf, projectileSpawn.transform.position, Quaternion.identity, projectileSpawn.transform);
     }
 
     IEnumerator FireSlow(GameObject bulletShot)
