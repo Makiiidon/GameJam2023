@@ -6,9 +6,11 @@ using UnityEngine;
 [RequireComponent(typeof(BoxCollider2D))]
 public class BaseEnemy : MonoBehaviour
 {
-    protected Rigidbody2D rb;
+    public Rigidbody2D rb;
+    [SerializeField] public GameObject particle;
 
-    [SerializeField] protected int health = 10;
+    [SerializeField] public int health = 10;
+    public bool alive = true;
 
     // Start is called before the first frame update
     void Start()
@@ -16,18 +18,19 @@ public class BaseEnemy : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public virtual void TakeDamage(int damageAmount)
     {
         health -= damageAmount;
-        if (health <= 0)
+    }
+
+    public virtual void SpawnDeathParticles() { GameObject.Instantiate(particle, transform.position, Quaternion.identity); }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("PlayerProjectile"))
         {
-            Destroy(this.gameObject);
+            TakeDamage(5);
         }
     }
 }

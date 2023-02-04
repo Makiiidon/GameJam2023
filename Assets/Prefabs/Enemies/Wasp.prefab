@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7505375738491332458}
   - component: {fileID: 7505375738491332457}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,7 +93,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7505375738548186596}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -128,7 +128,7 @@ GameObject:
   - component: {fileID: 7505375738856387887}
   - component: {fileID: 7505375738856387886}
   - component: {fileID: 2806122324135257326}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Wasp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -167,7 +167,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -211,7 +211,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e41ee0189bb2714eb59da5ab9a4312d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rb: {fileID: 7505375738856387872}
+  particle: {fileID: 9190036401976882654, guid: 3c96c1092cb67354a9c0a3898604545d, type: 3}
   health: 2
+  alive: 1
   speed: 250
   headPosition: {fileID: 7505375738548186596}
   detectionRange: 0.5
