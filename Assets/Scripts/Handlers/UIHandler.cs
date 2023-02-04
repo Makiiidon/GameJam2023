@@ -10,11 +10,12 @@ public class UIHandler : MonoBehaviour
 
     [SerializeField] PlayerController controller;
     [SerializeField] PlayerShoot shoot;
+    [SerializeField] AudioClip BGM;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        AudioHandler.Instance.PlayMusic(BGM);
     }
 
     // Update is called once per frame
