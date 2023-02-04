@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpiderBehavior : MonoBehaviour
+public class SpiderBehavior : BaseEnemy
 {
     private GameObject player;
 

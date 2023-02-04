@@ -40,7 +40,8 @@ public class WaspBehavior : BaseEnemy
         }
         else
         {
-            Destroy(this.gameObject);
+            //Destroy(this.gameObject);
+            this.gameObject.SetActive(false);
         }
     }
 
