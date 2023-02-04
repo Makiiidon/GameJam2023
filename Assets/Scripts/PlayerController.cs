@@ -34,6 +34,7 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] ParticleSystem leaves1;
     [SerializeField] ParticleSystem leaves2;
+    [SerializeField] GameObject deathParticles;
 
     // Start is called before the first frame update
     void Start()
@@ -76,6 +77,11 @@ public class PlayerController : MonoBehaviour
     public virtual void TakeDamage(int damageAmount)
     {
         playerHealth -= damageAmount;
+        if (playerHealth <= 0)
+        {
+            this.gameObject.SetActive(false);
+            GameObject.Instantiate(deathParticles, transform.position, Quaternion.identity);
+        }
     }
 
     //Damage taking
@@ -134,8 +140,7 @@ public class PlayerController : MonoBehaviour
         {
             anim.SetBool("IsRunning", true);
             anim.SetBool("IsFalling", false);
-            leaves1.Play();
-            leaves2.Play();
+            
 
         }
         else if (input.GetMove().x == 0 && isGrounded)
@@ -174,6 +179,16 @@ public class PlayerController : MonoBehaviour
     public bool IsGrounded() { return isGrounded; }
 
     public int GetHealth() { return playerHealth; }
+
+    public void PlayParticles() {
+        leaves1.Play();
+        leaves2.Play();
+    }
+    
+    public void StopParticles() {
+        leaves1.Stop();
+        leaves2.Stop();
+    }
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
