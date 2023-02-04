@@ -22,6 +22,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private int playerHealth = 5;
     [SerializeField] private int addedHealth = 1;
 
+    [SerializeField] bool isBossLevel = false;
+
     bool jumpRequest = false;
 
     bool isGrounded;
@@ -41,19 +43,30 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        rb.velocity = new Vector2(
-            input.GetMove().x * speed * Time.deltaTime, 
+
+        if (isBossLevel)
+        {
+            rb.velocity = new Vector2(
+            input.GetMove().x * speed * Time.deltaTime,
+            input.GetMove().y * speed * Time.deltaTime);
+        }
+        else
+        {
+            rb.velocity = new Vector2(
+            input.GetMove().x * speed * Time.deltaTime,
             rb.velocity.y);
+        }
 
 
-        if (jumpRequest)
+        if (jumpRequest && !isBossLevel)
         {
             //rb.velocity += Vector2.up * jumpStrength * Time.deltaTime;
             rb.AddForce(Vector2.up * jumpStrength * Time.deltaTime, ForceMode2D.Impulse);
             jumpRequest = false;
         }
 
-        
+
+
     }
 
     //Player damage taking
