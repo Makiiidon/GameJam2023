@@ -92,7 +92,6 @@ public class PlayerShoot : MonoBehaviour
                         Rigidbody2D bulletShotRb = bulletShot.GetComponent<Rigidbody2D>();
                         bulletShotRb.AddForce(new Vector2(0, -1 * shotSpeed));
                         Destroy(bulletShot, bulletAge);
-                        currentAmmo--;
                         didShoot = true;
                     }
                     StartCoroutine(WaitForShot());
@@ -106,7 +105,6 @@ public class PlayerShoot : MonoBehaviour
                     Rigidbody2D bulletShotRb = bulletShot.GetComponent<Rigidbody2D>();
                     bulletShotRb.AddForce(new Vector2(0, -1 * shotSpeed));
                     Destroy(bulletShot, bulletAge);
-                    currentAmmo--;
                     didShoot = true;
                     StartCoroutine(WaitForShot());
                 }

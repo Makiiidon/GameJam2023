@@ -74,7 +74,7 @@ public class BossBehavior : MonoBehaviour
             {
                 ShootSlow();
                 SFB_ticks = 0;
-                SLOWFIREBALL_INTERVAL = Random.Range(250, 350);
+                SLOWFIREBALL_INTERVAL = Random.Range(300, 350);
             }
             else if (SFB_ticks >= SLOWFIREBALL_INTERVAL && SBF_Prepping)
             {
@@ -93,7 +93,7 @@ public class BossBehavior : MonoBehaviour
             {
                 SpawnLeaf();
                 RL_ticks = 0;
-                RAZORLEAF_INTERVAL = Random.Range(200, 400);
+                RAZORLEAF_INTERVAL = Random.Range(150, 250);
             }
 
             if (currentHp == maxHp - 20)
