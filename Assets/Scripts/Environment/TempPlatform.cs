@@ -8,6 +8,8 @@ public class TempPlatform : MonoBehaviour
     [SerializeField] private float timeOnPlatform;
     [SerializeField] private bool isPlayerOn;
 
+    [SerializeField] private GameObject leafDestroyParticles;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +25,7 @@ public class TempPlatform : MonoBehaviour
             if(timeOnPlatform >= maxPlatformTime)
             {
                 this.gameObject.SetActive(false);
+                GameObject.Instantiate(leafDestroyParticles, transform.position, Quaternion.identity);
             }
         }
     }

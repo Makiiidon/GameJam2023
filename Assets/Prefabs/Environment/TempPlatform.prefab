@@ -128,6 +128,7 @@ MonoBehaviour:
   maxPlatformTime: 200
   timeOnPlatform: 0
   isPlayerOn: 0
+  leafDestroyParticles: {fileID: 9190036401976882654, guid: e09ecdeaeada02543a5226a65033ffdf, type: 3}
 --- !u!251 &4544439936349120719
 PlatformEffector2D:
   m_ObjectHideFlags: 0
