@@ -25,6 +25,8 @@ public class PlayerController : MonoBehaviour
     // Boss Player Animator
     [SerializeField] private Animator bossPlayerAnimator;
 
+    [SerializeField] UIHandler ui;
+
     public bool isBossLevel = false;
 
     bool jumpRequest = false;
@@ -85,6 +87,7 @@ public class PlayerController : MonoBehaviour
         {
             this.gameObject.SetActive(false);
             GameObject.Instantiate(deathParticles, transform.position, Quaternion.identity);
+            ui.GameOver();
         }
     }
 
@@ -203,5 +206,11 @@ public class PlayerController : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(groundCheckOffset + transform.position, groundCheckRadius);
+    }
+
+    IEnumerator Defeat()
+    {
+        ui.GameOver();
+        yield return new WaitForSeconds(1);
     }
 }

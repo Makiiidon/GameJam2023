@@ -1259,6 +1259,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8300000, guid: 80cd04dcff276fe42a19f81a6ed42e58, type: 3}
     - target: {fileID: 4744583629134725629, guid: 034de6e4080a7094487e6be07ea3a2ab, type: 3}
+      propertyPath: input
+      value: 
+      objectReference: {fileID: 1942446974}
+    - target: {fileID: 4744583629134725629, guid: 034de6e4080a7094487e6be07ea3a2ab, type: 3}
       propertyPath: shoot
       value: 
       objectReference: {fileID: 8234076708435309260}
@@ -4654,7 +4658,7 @@ MonoBehaviour:
   Jump: 32
   Attack: 107
   Shoot: 106
-  button4: 0
+  Pause: 0
 --- !u!4 &1942446975
 Transform:
   m_ObjectHideFlags: 0

@@ -11,12 +11,12 @@ public class InputHandler : MonoBehaviour
     [SerializeField] private KeyCode Jump;
     [SerializeField] private KeyCode Attack;
     [SerializeField] private KeyCode Shoot;
-    [SerializeField] private KeyCode button4;
+    [SerializeField] private KeyCode Pause;
 
     private bool isJumpPressed;
     private bool isAttackPressed;
     private bool isShootPressed;
-    private bool isButton4Pressed;
+    private bool isPausePressed;
     // Start is called before the first frame update
     void Awake()
     {
@@ -28,7 +28,7 @@ public class InputHandler : MonoBehaviour
         isJumpPressed = false;
         isAttackPressed = false;
         isShootPressed = false;
-        isButton4Pressed = false;
+        isPausePressed = false;
     }
 
     // Update is called once per frame
@@ -64,13 +64,13 @@ public class InputHandler : MonoBehaviour
             isShootPressed = false;
         }
         
-        if (Input.GetKeyDown(button4))
+        if (Input.GetKeyDown(Pause))
         {
-            isButton4Pressed = true;
+            isPausePressed = true;
         }
-        else if (!Input.GetKeyDown(button4))
+        else if (!Input.GetKeyDown(Pause))
         {
-            isButton4Pressed = false;
+            isPausePressed = false;
         }
 
     }
@@ -79,7 +79,7 @@ public class InputHandler : MonoBehaviour
     public bool GetJump() { return isJumpPressed; }
     public bool GetAttack() { return isAttackPressed; }
     public bool GetShoot() { return isShootPressed; }
-    public bool GetButton4() { return isButton4Pressed; }
+    public bool GetPause() { return isPausePressed; }
 
     public KeyCode ReturnJump() { return Jump; }
 }

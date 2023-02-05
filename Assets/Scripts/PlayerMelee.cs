@@ -16,6 +16,9 @@ public class PlayerMelee : MonoBehaviour
 
     [SerializeField] private Transform attackPointDown;
 
+    [SerializeField] AudioClip AttackSFX;
+
+
     Animator anim;
 
     // Start is called before the first frame update
@@ -69,7 +72,11 @@ public class PlayerMelee : MonoBehaviour
                     enemy.GetComponent<BaseEnemy>().TakeDamage(attackDamage);
                 }
             }
+            if (AudioHandler.Instance != null)
+            {
+                AudioHandler.Instance.PlaySound(AttackSFX);
 
+            }
             anim.SetTrigger("Attack");
 
         }
