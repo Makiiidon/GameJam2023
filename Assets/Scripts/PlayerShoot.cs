@@ -6,6 +6,7 @@ public class PlayerShoot : MonoBehaviour
 {
     InputHandler input;
     [SerializeField] private GameObject bullet;
+    [SerializeField] private GameObject FireBullet;
     [SerializeField] private float shotSpeed = 10.0f;
     [SerializeField] private float xOffset = 10.0f;
     [SerializeField] private float yOffset = 10.0f;
@@ -29,7 +30,6 @@ public class PlayerShoot : MonoBehaviour
         didShoot = false;
     }
 
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Reload"))
@@ -49,6 +49,7 @@ public class PlayerShoot : MonoBehaviour
         if (collision.gameObject.CompareTag("Firecorn"))
         {
             Destroy(collision.gameObject);
+            bullet = FireBullet;
 
             Debug.Log("Picked up Firecorn!");
         }
