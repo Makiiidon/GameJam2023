@@ -22,6 +22,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private int playerHealth = 5;
     [SerializeField] private int addedHealth = 1;
 
+    // Boss Player Animator
+    [SerializeField] private Animator bossPlayerAnimator;
+
     public bool isBossLevel = false;
 
     bool jumpRequest = false;
@@ -117,6 +120,12 @@ public class PlayerController : MonoBehaviour
         //Enemy projectile hit register
         if (collision.gameObject.CompareTag("EnemyProjectile"))
         {
+            
+            if(isBossLevel)
+            {
+                bossPlayerAnimator.SetTrigger("PlayerHit");
+            }
+            
             TakeDamage(1);
             Debug.Log("Got shot");
             Destroy(collision.gameObject);

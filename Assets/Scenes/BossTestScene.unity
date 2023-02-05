@@ -5051,6 +5051,7 @@ MonoBehaviour:
   maxHp: 30
   currentHp: 0
   projectileSpawn: {fileID: 1080596428418099781}
+  animator: {fileID: 0}
   SLOWFIREBALL_INTERVAL: 300
   slowFireball: {fileID: 7734771758417086995, guid: a89504e285b872b47840c339e12a3fb6, type: 3}
   slowFireballSpeed: 300
@@ -5074,6 +5075,7 @@ GameObject:
   - component: {fileID: 1080596426708174315}
   - component: {fileID: 1080596426708174313}
   - component: {fileID: 1080596426708174312}
+  - component: {fileID: 1080596426708174318}
   m_Layer: 0
   m_Name: Boss
   m_TagString: Enemy
@@ -5133,6 +5135,26 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &1080596426708174318
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1080596426708174316}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1087841ab916f1a4095f0b42e8f34366, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1080596426768307204
 GameObject:
   m_ObjectHideFlags: 0
@@ -6054,9 +6076,17 @@ PrefabInstance:
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8234076707461950051, guid: fe726778b6ca7c24585f26594c36c7da, type: 3}
+      propertyPath: bossAnimator
+      value: 
+      objectReference: {fileID: 8234076708435309264}
+    - target: {fileID: 8234076707461950051, guid: fe726778b6ca7c24585f26594c36c7da, type: 3}
       propertyPath: deathParticles
       value: 
       objectReference: {fileID: 9190036401976882654, guid: 3c96c1092cb67354a9c0a3898604545d, type: 3}
+    - target: {fileID: 8234076707461950051, guid: fe726778b6ca7c24585f26594c36c7da, type: 3}
+      propertyPath: bossPlayerAnimator
+      value: 
+      objectReference: {fileID: 8234076708435309264}
     - target: {fileID: 8234076707461950055, guid: fe726778b6ca7c24585f26594c36c7da, type: 3}
       propertyPath: maxAmmo
       value: 50
@@ -6064,6 +6094,10 @@ PrefabInstance:
     - target: {fileID: 8234076707461950055, guid: fe726778b6ca7c24585f26594c36c7da, type: 3}
       propertyPath: bulletAge
       value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8234076707461950055, guid: fe726778b6ca7c24585f26594c36c7da, type: 3}
+      propertyPath: timeBetweenShots
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8234076707461950061, guid: fe726778b6ca7c24585f26594c36c7da, type: 3}
       propertyPath: m_Name
@@ -6073,6 +6107,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 1653637938, guid: 609389f1246270f4fabc669eb8e2eabc, type: 3}
+    - target: {fileID: 8234076707527242081, guid: fe726778b6ca7c24585f26594c36c7da, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fe726778b6ca7c24585f26594c36c7da, type: 3}
 --- !u!114 &8234076708435309260 stripped
@@ -6097,3 +6135,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1c3d4e427f290848b5a79f8ac91f576, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &8234076708435309264 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 7227285729609455801, guid: fe726778b6ca7c24585f26594c36c7da, type: 3}
+  m_PrefabInstance: {fileID: 8234076708435309259}
+  m_PrefabAsset: {fileID: 0}
