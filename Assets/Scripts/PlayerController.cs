@@ -85,9 +85,9 @@ public class PlayerController : MonoBehaviour
         playerHealth -= damageAmount;
         if (playerHealth <= 0)
         {
+            ui.GameOver();
             this.gameObject.SetActive(false);
             GameObject.Instantiate(deathParticles, transform.position, Quaternion.identity);
-            ui.GameOver();
         }
     }
 
@@ -134,6 +134,7 @@ public class PlayerController : MonoBehaviour
             Destroy(collision.gameObject);
         }
     }
+
 
 
     private void Update()

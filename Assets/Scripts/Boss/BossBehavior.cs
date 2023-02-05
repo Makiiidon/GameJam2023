@@ -20,6 +20,9 @@ public class BossBehavior : MonoBehaviour
     [SerializeField] private float slowFireballSpeed;
     [SerializeField] private float slowFireballAge;
     [SerializeField] private float SBF_ShotDelay;
+    [SerializeField] private float SBF_Min;
+    [SerializeField] private float SBF_Max;
+
     private bool SBF_Prepping;
 
     // Razor Leaf
@@ -32,6 +35,8 @@ public class BossBehavior : MonoBehaviour
 
     // Phase Variables
     [SerializeField] private int currentPhase;
+
+    [SerializeField] GameObject win;
 
     // Start is called before the first frame update
     void Start()
@@ -52,6 +57,7 @@ public class BossBehavior : MonoBehaviour
         if(CheckDead())
         {
             this.gameObject.SetActive(false);
+            win.SetActive(true);
         }
 
         if (transform.position.x != targetDestination.transform.position.x)
@@ -69,12 +75,12 @@ public class BossBehavior : MonoBehaviour
 
         if (currentPhase == 1) // Slow Fireball
         {
-            SFB_ticks++;
+            SFB_ticks += Time.deltaTime;
             if (SFB_ticks >= SLOWFIREBALL_INTERVAL && !SBF_Prepping)
             {
                 ShootSlow();
                 SFB_ticks = 0;
-                SLOWFIREBALL_INTERVAL = Random.Range(300, 350);
+                SLOWFIREBALL_INTERVAL = Random.Range(SBF_Min, SBF_Max);
             }
             else if (SFB_ticks >= SLOWFIREBALL_INTERVAL && SBF_Prepping)
             {
@@ -88,12 +94,12 @@ public class BossBehavior : MonoBehaviour
         }
         else if(currentPhase == 2) // Leaves
         {
-            RL_ticks++;
+            RL_ticks += Time.deltaTime;
             if (RL_ticks >= RAZORLEAF_INTERVAL)
             {
                 SpawnLeaf();
                 RL_ticks = 0;
-                RAZORLEAF_INTERVAL = Random.Range(150, 250);
+                RAZORLEAF_INTERVAL = Random.Range(.1f, 1);
             }
 
             if (currentHp == maxHp - 20)
@@ -104,24 +110,24 @@ public class BossBehavior : MonoBehaviour
         }
         else if(currentPhase == 3) // Both
         {
-            SFB_ticks++;
+            SFB_ticks += Time.deltaTime;
             if (SFB_ticks >= SLOWFIREBALL_INTERVAL && !SBF_Prepping)
             {
                 ShootSlow();
                 SFB_ticks = 0;
-                SLOWFIREBALL_INTERVAL = Random.Range(250, 350);
+                SLOWFIREBALL_INTERVAL = Random.Range(SBF_Min, SBF_Max);
             }
             else if (SFB_ticks >= SLOWFIREBALL_INTERVAL && SBF_Prepping)
             {
                 SFB_ticks = 0;
             }
 
-            RL_ticks++;
+            RL_ticks += Time.deltaTime;
             if (RL_ticks >= RAZORLEAF_INTERVAL)
             {
                 SpawnLeaf();
                 RL_ticks = 0;
-                RAZORLEAF_INTERVAL = Random.Range(200, 400);
+                RAZORLEAF_INTERVAL = Random.Range(.1f, 1);
             }
         }
     }
