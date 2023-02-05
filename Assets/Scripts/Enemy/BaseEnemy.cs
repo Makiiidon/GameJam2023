@@ -12,10 +12,17 @@ public class BaseEnemy : MonoBehaviour
     [SerializeField] public int health = 10;
     public bool alive = true;
 
+    // Damage
+    [SerializeField] public int originalDmg;
+    [SerializeField] public int fireDmg;
+
+
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        originalDmg = 2;
+        fireDmg = 4;
     }
 
 
@@ -31,6 +38,11 @@ public class BaseEnemy : MonoBehaviour
         if (collision.gameObject.CompareTag("PlayerProjectile"))
         {
             TakeDamage(2);
+            Destroy(collision.gameObject);
+        }
+        else if (collision.gameObject.CompareTag("FireProjectile"))
+        {
+            TakeDamage(4);
             Destroy(collision.gameObject);
         }
     }

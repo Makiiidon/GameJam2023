@@ -9,6 +9,10 @@ TagManager:
   - Enemy
   - Heal
   - WallFloorHit
+  - EnemyProjectile
+  - Firecorn
+  - Multicorn
+  - FireProjectile
   layers:
   - Default
   - TransparentFX

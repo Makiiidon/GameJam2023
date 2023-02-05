@@ -7,6 +7,7 @@ public class PlayerShoot : MonoBehaviour
     InputHandler input;
     [SerializeField] private GameObject bullet;
     [SerializeField] private GameObject FireBullet;
+    [SerializeField] private GameObject activeBullet;
     [SerializeField] private float shotSpeed = 10.0f;
     [SerializeField] private float xOffset = 10.0f;
     [SerializeField] private float yOffset = 10.0f;
@@ -18,9 +19,16 @@ public class PlayerShoot : MonoBehaviour
     [SerializeField] private int addedAmmo = 5;
     [SerializeField] private float bulletAge = 0.5f;
 
+    [SerializeField] private float pickupTime;
+    [SerializeField] private float multishotPickupTime;
+
     // Fire Rate
     [SerializeField] private float timeBetweenShots;
     [SerializeField] private bool didShoot;
+
+    [SerializeField] private bool isMultishot;
+    [SerializeField] private int repeatedShots;
+
 
     // Start is called before the first frame update
     void Start()
@@ -28,6 +36,8 @@ public class PlayerShoot : MonoBehaviour
         input = InputHandler.Instance;
         currentAmmo = maxAmmo;
         didShoot = false;
+        activeBullet = bullet;
+        isMultishot = false;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -49,15 +59,16 @@ public class PlayerShoot : MonoBehaviour
         if (collision.gameObject.CompareTag("Firecorn"))
         {
             Destroy(collision.gameObject);
-            bullet = FireBullet;
-
+            activeBullet = FireBullet;
+            StartCoroutine(pickupDuration(pickupTime));
             Debug.Log("Picked up Firecorn!");
         }
 
         if (collision.gameObject.CompareTag("Multicorn"))
         {
             Destroy(collision.gameObject);
-
+            isMultishot = true;
+            StartCoroutine(multishotDuration(multishotPickupTime));
             Debug.Log("Picked up Multicorn!");
         }
     }
@@ -70,41 +81,91 @@ public class PlayerShoot : MonoBehaviour
         {
             if (playerController.isBossLevel && input.GetShoot() && !didShoot)
             {
-                Debug.Log("Shooting!");
-                Vector3 spawnTransform = transform.position;
-                spawnTransform.y += bossYOffset;
-                GameObject bulletShot = Instantiate(bullet, spawnTransform, Quaternion.identity);
-                Rigidbody2D bulletShotRb = bulletShot.GetComponent<Rigidbody2D>();
-                bulletShotRb.AddForce(new Vector2(0, -1 * shotSpeed));
-                Destroy(bulletShot, bulletAge);
-                currentAmmo--;
-                didShoot = true;
-                StartCoroutine(WaitForShot());
-            }
-            else if (input.GetShoot() && !didShoot)
-            {
-                Debug.Log("Shooting!");
-                Vector3 spawnTransform = transform.position;
-                spawnTransform.y += yOffset;
-                if (playerController.IsFacingLeft())
+                if(isMultishot)
                 {
-                    spawnTransform.x += (xOffset * -1);
-                    GameObject bulletShot = Instantiate(bullet, spawnTransform, Quaternion.identity);
-                    Rigidbody2D bulletShotRb = bulletShot.GetComponent<Rigidbody2D>();
-                    bulletShotRb.AddForce(new Vector2(-1 * shotSpeed, 0));
-                    Destroy(bulletShot, bulletAge);
+                    for (int i = 0; i < repeatedShots; i++)
+                    {
+                        Debug.Log("Shooting!");
+                        Vector3 spawnTransform = transform.position;
+                        spawnTransform.y += bossYOffset;
+                        GameObject bulletShot = Instantiate(activeBullet, spawnTransform, Quaternion.identity);
+                        Rigidbody2D bulletShotRb = bulletShot.GetComponent<Rigidbody2D>();
+                        bulletShotRb.AddForce(new Vector2(0, -1 * shotSpeed));
+                        Destroy(bulletShot, bulletAge);
+                        currentAmmo--;
+                        didShoot = true;
+                    }
+                    StartCoroutine(WaitForShot());
                 }
                 else
                 {
-                    spawnTransform.x += xOffset;
-                    GameObject bulletShot = Instantiate(bullet, spawnTransform, Quaternion.identity);
+                    Debug.Log("Shooting!");
+                    Vector3 spawnTransform = transform.position;
+                    spawnTransform.y += bossYOffset;
+                    GameObject bulletShot = Instantiate(activeBullet, spawnTransform, Quaternion.identity);
                     Rigidbody2D bulletShotRb = bulletShot.GetComponent<Rigidbody2D>();
-                    bulletShotRb.AddForce(new Vector2(shotSpeed, 0));
+                    bulletShotRb.AddForce(new Vector2(0, -1 * shotSpeed));
                     Destroy(bulletShot, bulletAge);
+                    currentAmmo--;
+                    didShoot = true;
+                    StartCoroutine(WaitForShot());
                 }
-                currentAmmo--;
-                didShoot = true;
-                StartCoroutine(WaitForShot());
+            }
+            else if (input.GetShoot() && !didShoot)
+            {
+                if (isMultishot)
+                {
+                    currentAmmo--;
+                    for (int i = 0; i < repeatedShots; i++)
+                    {
+                        Debug.Log("Shooting!");
+                        Vector3 spawnTransform = transform.position;
+                        spawnTransform.y += yOffset;
+                        if (playerController.IsFacingLeft())
+                        {
+                            spawnTransform.x += (xOffset * -1);
+                            GameObject bulletShot = Instantiate(activeBullet, spawnTransform, Quaternion.identity);
+                            Rigidbody2D bulletShotRb = bulletShot.GetComponent<Rigidbody2D>();
+                            bulletShotRb.AddForce(new Vector2(-1 * shotSpeed, 0));
+                            Destroy(bulletShot, bulletAge);
+                        }
+                        else
+                        {
+                            spawnTransform.x += xOffset;
+                            GameObject bulletShot = Instantiate(activeBullet, spawnTransform, Quaternion.identity);
+                            Rigidbody2D bulletShotRb = bulletShot.GetComponent<Rigidbody2D>();
+                            bulletShotRb.AddForce(new Vector2(shotSpeed, 0));
+                            Destroy(bulletShot, bulletAge);
+                        }
+                        didShoot = true;
+                    }
+                    StartCoroutine(WaitForShot());
+                }
+                else
+                { 
+                    Debug.Log("Shooting!");
+                    Vector3 spawnTransform = transform.position;
+                    spawnTransform.y += yOffset;
+                    if (playerController.IsFacingLeft())
+                    {
+                        spawnTransform.x += (xOffset * -1);
+                        GameObject bulletShot = Instantiate(activeBullet, spawnTransform, Quaternion.identity);
+                        Rigidbody2D bulletShotRb = bulletShot.GetComponent<Rigidbody2D>();
+                        bulletShotRb.AddForce(new Vector2(-1 * shotSpeed, 0));
+                        Destroy(bulletShot, bulletAge);
+                    }
+                    else
+                    {
+                        spawnTransform.x += xOffset;
+                        GameObject bulletShot = Instantiate(activeBullet, spawnTransform, Quaternion.identity);
+                        Rigidbody2D bulletShotRb = bulletShot.GetComponent<Rigidbody2D>();
+                        bulletShotRb.AddForce(new Vector2(shotSpeed, 0));
+                        Destroy(bulletShot, bulletAge);
+                    }
+                    currentAmmo--;
+                    didShoot = true;
+                    StartCoroutine(WaitForShot());
+                }
             }
         }
     }
@@ -124,5 +185,18 @@ public class PlayerShoot : MonoBehaviour
     public int GetCurrentAmmo()
     {
         return currentAmmo;
+    }
+
+    IEnumerator pickupDuration(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        activeBullet = bullet;
+    }
+
+
+    IEnumerator multishotDuration(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        isMultishot = false;
     }
 }

@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7505375738491332456}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -2.94, y: -0.59, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -213,7 +213,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 7505375738856387872}
   particle: {fileID: 9190036401976882654, guid: 3c96c1092cb67354a9c0a3898604545d, type: 3}
-  health: 2
+  health: 4
   alive: 1
   speed: 250
   sprite: {fileID: 7505375738491332457}
