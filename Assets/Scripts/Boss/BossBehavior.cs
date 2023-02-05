@@ -10,6 +10,7 @@ public class BossBehavior : MonoBehaviour
     [SerializeField] private int maxHp;
     [SerializeField] private int currentHp;
     [SerializeField] private GameObject projectileSpawn;
+    [SerializeField] private Animator animator;
 
 
     // Slow Fireball
@@ -41,6 +42,7 @@ public class BossBehavior : MonoBehaviour
         SBF_Prepping = false;
         currentHp = maxHp;
         currentPhase = 1;
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -162,6 +164,7 @@ public class BossBehavior : MonoBehaviour
         if(collision.gameObject.CompareTag("PlayerProjectile"))
         {
             currentHp--;
+            animator.SetTrigger("BossHit");
         }
         
     }
