@@ -45,6 +45,20 @@ public class PlayerShoot : MonoBehaviour
                 Debug.Log("Already at max ammo");
             }
         }
+
+        if (collision.gameObject.CompareTag("Firecorn"))
+        {
+            Destroy(collision.gameObject);
+
+            Debug.Log("Picked up Firecorn!");
+        }
+
+        if (collision.gameObject.CompareTag("Multicorn"))
+        {
+            Destroy(collision.gameObject);
+
+            Debug.Log("Picked up Multicorn!");
+        }
     }
 
     // Update is called once per frame
