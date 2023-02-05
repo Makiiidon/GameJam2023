@@ -5458,8 +5458,8 @@ Transform:
   - {fileID: 1092570496}
   - {fileID: 194479654}
   - {fileID: 566654305}
-  - {fileID: 1106156242}
   - {fileID: 1889923623}
+  - {fileID: 1106156242}
   - {fileID: 1325159953}
   - {fileID: 713143365}
   m_Father: {fileID: 0}
@@ -13189,6 +13189,18 @@ PrefabInstance:
     - target: {fileID: 3116060691605657666, guid: 6e207e86c59d1ab438014c3cd8b2489e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3116060691605657669, guid: 6e207e86c59d1ab438014c3cd8b2489e, type: 3}
+      propertyPath: bulletAge
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3116060691605657669, guid: 6e207e86c59d1ab438014c3cd8b2489e, type: 3}
+      propertyPath: shotSpeed
+      value: 1500
+      objectReference: {fileID: 0}
+    - target: {fileID: 3116060691605657669, guid: 6e207e86c59d1ab438014c3cd8b2489e, type: 3}
+      propertyPath: timeBetweenShots
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 3116060691605657679, guid: 6e207e86c59d1ab438014c3cd8b2489e, type: 3}
       propertyPath: m_Name

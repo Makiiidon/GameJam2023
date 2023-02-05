@@ -17,12 +17,16 @@ public class PlayerShoot : MonoBehaviour
     [SerializeField] private int addedAmmo = 5;
     [SerializeField] private float bulletAge = 0.5f;
 
+    // Fire Rate
+    [SerializeField] private float timeBetweenShots;
+    [SerializeField] private bool didShoot;
 
     // Start is called before the first frame update
     void Start()
     {
         input = InputHandler.Instance;
         currentAmmo = maxAmmo;
+        didShoot = false;
     }
 
 
@@ -49,7 +53,7 @@ public class PlayerShoot : MonoBehaviour
        
         if(currentAmmo > 0)
         {
-            if (playerController.isBossLevel && input.GetShoot())
+            if (playerController.isBossLevel && input.GetShoot() && !didShoot)
             {
                 Debug.Log("Shooting!");
                 Vector3 spawnTransform = transform.position;
@@ -59,8 +63,10 @@ public class PlayerShoot : MonoBehaviour
                 bulletShotRb.AddForce(new Vector2(0, -1 * shotSpeed));
                 Destroy(bulletShot, bulletAge);
                 currentAmmo--;
+                didShoot = true;
+                StartCoroutine(WaitForShot());
             }
-            else if (input.GetShoot())
+            else if (input.GetShoot() && !didShoot)
             {
                 Debug.Log("Shooting!");
                 Vector3 spawnTransform = transform.position;
@@ -82,9 +88,17 @@ public class PlayerShoot : MonoBehaviour
                     Destroy(bulletShot, bulletAge);
                 }
                 currentAmmo--;
-
+                didShoot = true;
+                StartCoroutine(WaitForShot());
             }
         }
+    }
+
+    IEnumerator WaitForShot()
+    {
+        yield return new WaitForSeconds(timeBetweenShots);
+        didShoot = false;
+
     }
 
     private void FixedUpdate()
